@@ -12,3 +12,4 @@ def add_category():
         return jsonify({'msg': 'Category added successfully'}), 201
     except ValueError as e:
         return jsonify({'error': str(e)}), 400
+    

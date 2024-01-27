@@ -1,3 +1,5 @@
+from app.models.Category import Category
+
 class Part:
     def __init__(self, serial_number, name, description, category, quantity, price, location):
         self.serial_number = serial_number
@@ -20,7 +22,7 @@ class Part:
         }
 
     @staticmethod
-    def validate(data):
+    def validate(data, mongo):
         if not isinstance(data.get('serial_number'), str):
             raise ValueError("Serial number must be a string")
         if not isinstance(data.get('name'), str):
@@ -35,4 +37,7 @@ class Part:
             raise ValueError("Price must be a non-negative number")
         if not isinstance(data.get('location'), dict):
             raise ValueError("Location must be a dictionary")
+        if 'category' in data:
+            if not Category.exists(data['category'], mongo):
+                raise ValueError("Category does not exist")
         return True

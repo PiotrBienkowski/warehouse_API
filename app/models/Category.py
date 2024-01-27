@@ -18,3 +18,13 @@ class Category:
         if data.get('parent_id') and not ObjectId.is_valid(data.get('parent_id')):
             raise ValueError("Parent ID must be a valid ObjectId")
         return True
+    
+    @classmethod
+    def exists(cls, category_id, mongo):
+        try:
+            object_id = ObjectId(category_id)
+        except:
+            return False
+
+        category = mongo.db.categories.find_one({'_id': object_id})
+        return bool(category)
