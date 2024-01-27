@@ -8,7 +8,6 @@ from flask import request, jsonify
 @app.route('/parts', methods=['POST'])
 def add_part():
     try:
-        # TODO: check that category exist
         data = request.json
         Part.validate(data, mongo)
         new_part = Part(**data)
@@ -36,6 +35,11 @@ def update_part(id):
         return jsonify({'error': 'Invalid ObjectId'}), 400
 
     data = request.json
+    try:
+        Part.validate(data)
+    except ValueError as e:
+        return jsonify({'error': str(e)}), 400
+    
     result = mongo.db.parts.update_one({'_id': object_id}, {"$set": data})
     if result.matched_count:
         return jsonify({'msg': 'Part updated successfully'}), 200
