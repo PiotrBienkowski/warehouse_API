@@ -26,6 +26,21 @@ def show_parts():
         parts_list.append(part)
     return jsonify(parts_list), 200
 
+# ----- READ ONE -----
+@app.route('/parts/<part_id>', methods=['GET'])
+def get_part(part_id):
+    try:
+        object_id = ObjectId(part_id)
+    except:
+        return jsonify({"error": "Invalid ObjectId"}), 400
+
+    part = mongo.db.parts.find_one({"_id": object_id})
+    if part:
+        part['_id'] = objectIdToStr(part['_id'])
+        return jsonify(part), 200
+    else:
+        return jsonify({"error": "Part not found"}), 404
+
 # ----- UPDATE -----
 @app.route('/parts/<id>', methods=['PUT'])
 def update_part(id):

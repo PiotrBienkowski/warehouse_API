@@ -4,10 +4,10 @@ from app.utils.levenshtein_dist import find_minimum_levenshtein_distance
 from app.utils.objectIdToStr import objectIdToStr
 from flask import jsonify
 
-@app.route('/search/<key>', methods=['GET'])
-def search(key):
+@app.route('/search/<key>/<limit>', methods=['GET'])
+def search(key, limit):
     key = str(key)
-    limit = 4 # how many best matches to return
+    limit = int(limit)
     
     parts = mongo.db.parts.find()
     tab = []

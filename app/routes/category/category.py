@@ -29,6 +29,21 @@ def show_categories():
         categories_list.append(category)
     return jsonify(categories_list), 200
 
+# ----- READ ONE -----
+@app.route('/categories/<category_id>', methods=['GET'])
+def get_category(category_id):
+    try:
+        object_id = ObjectId(category_id)
+    except:
+        return jsonify({"error": "Invalid ObjectId"}), 400
+
+    category = mongo.db.categories.find_one({"_id": object_id})
+    if category:
+        category['_id'] = objectIdToStr(category['_id'])
+        return jsonify(category), 200
+    else:
+        return jsonify({"error": "Category not found"}), 404
+
 # ----- UPDATE -----
 @app.route('/categories/<id>', methods=['PUT'])
 def update_category(id):
