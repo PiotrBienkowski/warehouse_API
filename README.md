@@ -17,6 +17,33 @@ In addition, the parent category cannot be removed if there is any part in the s
 In the search algorithm, I decided to add a coefficient to each part. I decided that this coefficient would be the smallest possible Levenshtein distance. I calculate the coefficient for each part, then sort the array and return the best matches.
 
 ## Instalation
+### With Docker
+Clone the repository:
+```
+git clone https://github.com/PiotrBienkowski/warehouse_API
+```
+
+Go to the directory:
+```
+cd warehouse_API
+```
+
+Build docker:
+```
+docker build -t warehouse_api .
+```
+
+Run docker (5005 you can replace with any free port):
+```
+docker run -d -p 5005:5000 warehouse
+```
+
+You should see the status at the link:
+```
+http://0.0.0.0:5005/status
+```
+---
+### Without Docker
 <!-- TODO -->
 
 ## Endpoints
@@ -24,55 +51,69 @@ In the search algorithm, I decided to add a coefficient to each part. I decided 
 ### Create Part
 
 - **URL:** `/parts`
-- **Metoda:** `POST`
+- **Method:** `POST`
 - **Payload:** `{"serial_number": "X", "name": "X", "description": "X", "category": "id", "quantity": 100, "price": 0.10, "location": {"room": "A1", "bookcase": "B1", "shelf": "C1", "cuvette": "D1", "column": "E1", "row": "F1" }}`
-- **Odpowiedź:** `Part updated successfully`
+- **Ans:** `Part updated successfully`
 
 ### Read Part
 
 - **URL:** `/parts`
-- **Metoda:** `GET`
+- **Method:** `GET`
 
 ### Read One Part
 
 - **URL:** `/parts/{id}`
-- **Metoda:** `GET`
+- **Method:** `GET`
 
 ### Update Part
 
 - **URL:** `/parts/{id}`
-- **Metoda:** `PUT`
+- **Method:** `PUT`
 
 ### Delete Part
 
 - **URL:** `/parts/{id}`
-- **Metoda:** `PUT`
+- **Method:** `PUT`
 
 ---
 
 ### Create Category
 
 - **URL:** `/categories`
-- **Metoda:** `POST`
+- **Method:** `POST`
 - **Payload:** `{"name": "X", "parent_id": "id"}`
-- **Odpowiedź:** `Part updated successfully`
+- **Ans:** `Part updated successfully`
 
 ### Read Category
 
 - **URL:** `/categories`
-- **Metoda:** `GET`
+- **Method:** `GET`
 
 ### Read One Part
 
 - **URL:** `/categories/{id}`
-- **Metoda:** `GET`
+- **Method:** `GET`
 
 ### Update Category
 
 - **URL:** `/categories/{id}`
-- **Metoda:** `PUT`
+- **Method:** `PUT`
 
 ### Delete Category
 
 - **URL:** `/categories/{id}`
-- **Metoda:** `PUT`
+- **Method:** `PUT`
+
+---
+
+### Status Endpoint
+- **URL:** `/status/`
+- **Method:** `Get`
+- **Ans:** `{status: ok, current_time: time}`
+
+---
+
+### Status Endpoint
+- **URL:** `/search/{key}/limit`
+- **Method:** `Get`
+- **Ans:** list of prediction
