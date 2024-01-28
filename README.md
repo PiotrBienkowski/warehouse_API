@@ -45,7 +45,7 @@ docker build -t warehouse_api .
 
 Run docker (5005 you can replace with any free port):
 ```
-docker run -d -p 5005:5000 warehouse
+docker run -d -p 5005:5000 warehouse_api
 ```
 
 You should see the status at the link:
