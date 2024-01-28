@@ -17,6 +17,16 @@ In addition, the parent category cannot be removed if there is any part in the s
 In the search algorithm, I decided to add a coefficient to each part. I decided that this coefficient would be the smallest possible Levenshtein distance. I calculate the coefficient for each part, then sort the array and return the best matches.
 
 ## Instalation
+Create file `.env` and put in it:
+```
+MONGO_URL=config/config.py
+```
+
+In the [config.py](https://github.com/PiotrBienkowski/warehouse_API/blob/main/app/config/config.py) file, set your MONGO_URI, for example:
+```
+MONGO_URI="mongodb://localhost:27017/DATA_BASE"
+```
+
 ### With Docker
 Clone the repository:
 ```
