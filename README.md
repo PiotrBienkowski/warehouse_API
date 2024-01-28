@@ -44,7 +44,35 @@ http://0.0.0.0:5005/status
 ```
 ---
 ### Without Docker
-<!-- TODO -->
+Clone the repository:
+```
+git clone https://github.com/PiotrBienkowski/warehouse_API
+```
+
+Go to the directory:
+```
+cd warehouse_API
+```
+
+Create virtual environment:
+```
+conda create --name warehouse_env python=3.8
+```
+
+Activate environment:
+```
+conda activate warehouse_env
+```
+
+Install libraries:
+```
+pip install -r requirements.txt
+```
+
+Run app:
+```
+python3 run.py
+```
 
 ## Endpoints
 
