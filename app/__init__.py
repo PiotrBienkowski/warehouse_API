@@ -13,3 +13,4 @@ mongo = PyMongo(app)
 from app.routes.main import main
 from app.routes.part import part
 from app.routes.category import category
+from app.routes.search import search

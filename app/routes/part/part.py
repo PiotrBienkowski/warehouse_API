@@ -35,6 +35,9 @@ def update_part(id):
         return jsonify({'error': 'Invalid ObjectId'}), 400
 
     data = request.json
+    if '_id' in data and data['_id'] != id:
+        return jsonify({'error': 'Mismatch between URL id and JSON id'}), 400
+    
     try:
         Part.validate(data)
     except ValueError as e:
