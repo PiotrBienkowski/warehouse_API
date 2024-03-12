@@ -151,7 +151,9 @@ python3 run.py
 
 ---
 
-### Status Endpoint
+### Search Endpoint
 - **URL:** `/search/{key}/limit`
 - **Method:** `Get`
 - **Ans:** list of prediction
+
+*this is the recruitment task of Elmark Automatics S.A. elmark.com.pl
